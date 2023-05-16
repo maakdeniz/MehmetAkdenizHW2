@@ -87,6 +87,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B1B4BC92A1439FE00D302E2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2B7E0FDC2A138AC7004AC639 /* NewsTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2B1B4BCA2A143A0400D302E2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2BB363782A12BD4C00808CD2 /* DetailViewController.swift */,
+				2B7E0FDA2A138AA2004AC639 /* NewsTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2B1B4BCB2A143BAA00D302E2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2BB363742A12BD4C00808CD2 /* AppDelegate.swift */,
+				2BB363762A12BD4C00808CD2 /* SceneDelegate.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		2BB363682A12BD4C00808CD2 = {
 			isa = PBXGroup;
 			children = (
@@ -112,16 +138,14 @@
 		2BB363732A12BD4C00808CD2 /* NYTimesTopNews */ = {
 			isa = PBXGroup;
 			children = (
-				2BB363742A12BD4C00808CD2 /* AppDelegate.swift */,
-				2BB363762A12BD4C00808CD2 /* SceneDelegate.swift */,
-				2BB363782A12BD4C00808CD2 /* DetailViewController.swift */,
+				2B1B4BCB2A143BAA00D302E2 /* Supporting Files */,
+				2B1B4BCA2A143A0400D302E2 /* Controller */,
+				2B1B4BC92A1439FE00D302E2 /* View */,
 				2BB3637A2A12BD4C00808CD2 /* Main.storyboard */,
 				2BB363802A12BD4C00808CD2 /* Assets.xcassets */,
 				2BB363822A12BD4C00808CD2 /* LaunchScreen.storyboard */,
-				2BB363852A12BD4C00808CD2 /* Info.plist */,
 				2BB3637D2A12BD4C00808CD2 /* NYTimesTopNews.xcdatamodeld */,
-				2B7E0FDA2A138AA2004AC639 /* NewsTableViewController.swift */,
-				2B7E0FDC2A138AC7004AC639 /* NewsTableViewCell.swift */,
+				2BB363852A12BD4C00808CD2 /* Info.plist */,
 			);
 			path = NYTimesTopNews;
 			sourceTree = "<group>";

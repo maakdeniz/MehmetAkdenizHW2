@@ -30,7 +30,7 @@ class DetailViewController: UIViewController {
             storyImageView.kf.setImage(with: url)
         }
         
-        navigationItem.title = "Mehmet"
+        navigationItem.title = "NYTimes Top News"
     }
     
     @IBAction func seeMoreButtonTapped(_ sender: Any) {

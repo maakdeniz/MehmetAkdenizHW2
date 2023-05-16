@@ -10,11 +10,23 @@ import NYTimesAPI
 
 class NewsTableViewController: UITableViewController {
 
-    var stories = [StoryResult]()
+    private var stories = [StoryResult]()
+    private let apiManager = NYTimesService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        apiManager.fetchTopStories { [weak self] result in
+                switch result {
+                case .success(let stories):
+                    DispatchQueue.main.async {
+                        self?.stories = stories
+                        self?.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
                 
             
     }

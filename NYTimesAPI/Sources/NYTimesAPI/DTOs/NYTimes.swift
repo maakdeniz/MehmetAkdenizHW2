@@ -5,7 +5,7 @@ public struct StoryResponse: Codable {
     public let numResults: Int
     public let results: [StoryResult]
 
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case status, copyright, section
         case lastUpdated = "last_updated"
         case numResults = "num_results"
@@ -25,7 +25,7 @@ public struct StoryResult: Codable {
     public let multimedia: [Multimedia]
     public let shortURL: String?
 
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case section, subsection, title, abstract, url, uri, byline
         case itemType = "item_type"
         case updatedDate = "updated_date"
@@ -49,24 +49,24 @@ public enum ItemType: String, Codable {
 
 // MARK: - Multimedia
 public struct Multimedia: Codable {
-    let url: String
-    let format: Format
-    let height, width: Int
-    let type: TypeEnum
-    let subtype: Subtype
-    let caption, copyright: String
+    public let url: String
+    public let format: Format
+    public let height, width: Int
+    public let type: TypeEnum
+    public let subtype: Subtype
+    public let caption, copyright: String
 }
 
-enum Format: String, Codable {
+public enum Format: String, Codable {
     case largeThumbnail = "Large Thumbnail"
     case superJumbo = "Super Jumbo"
     case threeByTwoSmallAt2X = "threeByTwoSmallAt2X"
 }
 
-enum Subtype: String, Codable {
+public enum Subtype: String, Codable {
     case photo = "photo"
 }
 
-enum TypeEnum: String, Codable {
+public enum TypeEnum: String, Codable {
     case image = "image"
 }
