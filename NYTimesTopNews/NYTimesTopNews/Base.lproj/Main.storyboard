@@ -55,6 +55,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="seeMoreButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wlA-58-ZXQ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -77,6 +80,8 @@
                             <constraint firstItem="vN9-HB-JkA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="zxW-aN-CMY"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="authorLabel" destination="itE-ic-hAC" id="1K3-xw-9r0"/>
                         <outlet property="descriptionLabel" destination="7Jt-cg-Vlc" id="g5k-pd-gUL"/>
@@ -86,7 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1951.9083969465648" y="-8.4507042253521139"/>
+            <point key="canvasLocation" x="2878.6259541984732" y="-8.4507042253521139"/>
         </scene>
         <!--NYTimes Top News-->
         <scene sceneID="8Zy-an-hMR">
@@ -147,11 +152,12 @@
                             <outlet property="delegate" destination="4jQ-kj-GZd" id="aaW-Sk-R55"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="News" image="newspaper" catalog="system" id="L7n-cd-ijR"/>
                     <navigationItem key="navigationItem" title="NYTimes Top News" id="UWO-1h-QIE"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aaj-iD-0mH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1173" y="-8"/>
+            <point key="canvasLocation" x="2098.4732824427479" y="-8.4507042253521139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Lkf-GJ-dGp">
@@ -164,15 +170,52 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="4jQ-kj-GZd" kind="relationship" relationship="rootViewController" id="Qgn-k9-T6f"/>
+                        <segue destination="8ld-ly-x3h" kind="relationship" relationship="rootViewController" id="Qgn-k9-T6f"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qzW-gn-x4a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="113.74045801526717" y="-8.4507042253521139"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="RiR-oQ-5wo">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="8ld-ly-x3h" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="b9n-oe-dxn"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nCR-fS-4wk">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="4jQ-kj-GZd" kind="relationship" relationship="viewControllers" id="Kq3-7S-n5g"/>
+                        <segue destination="MJx-34-bbH" kind="relationship" relationship="viewControllers" id="gk6-KG-Ljf"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TbK-dC-4XJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1171.7557251908397" y="-8.4507042253521139"/>
+        </scene>
+        <!--Favorites-->
+        <scene sceneID="UED-HV-U4V">
+            <objects>
+                <viewController id="MJx-34-bbH" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cZO-VW-wjk">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Xez-Lh-G2q"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="heart" catalog="system" id="GU0-Fw-TqD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3YC-Fb-Vnk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1413" y="739"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="newspaper" catalog="system" width="128" height="111"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

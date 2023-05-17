@@ -18,7 +18,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
-    
+    var favoriteButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -31,6 +31,10 @@ class DetailViewController: UIViewController {
         }
         
         navigationItem.title = "NYTimes Top News"
+        
+        favoriteButton = UIBarButtonItem(image: UIImage(systemName: "heart"),style: .plain, target: self,action: #selector(addToFavorites))
+        self.navigationItem.rightBarButtonItem = favoriteButton
+        updateFavoriteButton()
     }
     
     @IBAction func seeMoreButtonTapped(_ sender: Any) {
@@ -39,5 +43,25 @@ class DetailViewController: UIViewController {
             self.present(safariVC, animated: true)
         }
     }
+    
+    @objc func addToFavorites(_ sender: Any) {
+        guard let story = story else { return }
+        if CoreDataManager.shared.isFavorite(story: story) {
+            // If the story is already a favorite, delete it from favorites
+            CoreDataManager.shared.deleteFavorite(story: story)
+        } else {
+            // If the story is not a favorite, add it to favorites
+            CoreDataManager.shared.addFavorite(story: story)
+        }
+        updateFavoriteButton()
+    }
+    
+    func updateFavoriteButton() {
+        guard let story = story else { return }
+        if CoreDataManager.shared.isFavorite(story: story) {
+            favoriteButton.image = UIImage(systemName: "heart.fill") // Or any image you want when favorited
+        } else {
+            favoriteButton.image = UIImage(systemName: "heart") // Or any image you want when not favorited
+        }
+      }
 }
-
