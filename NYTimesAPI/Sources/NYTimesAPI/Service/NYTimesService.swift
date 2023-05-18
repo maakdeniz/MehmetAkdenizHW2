@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  NYTimesService.swift
 //  
 //
 //  Created by Mehmet Akdeniz on 15.05.2023.

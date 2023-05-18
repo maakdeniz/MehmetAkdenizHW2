@@ -34,6 +34,15 @@ class NewsTableViewCell: UITableViewCell {
                 )
     }
     
+    func setCellWithValuesOfFavorite(_ story: FavoriteStory) {
+        updateUI(
+                title: story.title,
+                abstrack: story.abstract,
+                imageUrl: story.imageUrl
+                )
+    }
+
+    
     func updateUI(title: String?,abstrack: String?,imageUrl: String?){
         self.storyTitleLabel.text = title
         self.storyAbstractLabel.text = abstrack

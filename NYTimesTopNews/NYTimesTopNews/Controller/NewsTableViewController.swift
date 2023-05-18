@@ -8,7 +8,7 @@
 import UIKit
 import NYTimesAPI
 
-class NewsTableViewController: UITableViewController {
+class NewsTableViewController: UITableViewController,LoadingShowable {
 
     private var stories = [StoryResult]()
     private let apiManager = NYTimesService()
@@ -16,8 +16,10 @@ class NewsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.showLoading()
         apiManager.fetchTopStories { [weak self] result in
-                switch result {
+            self?.hideLoading()
+            switch result {
                 case .success(let stories):
                     DispatchQueue.main.async {
                         self?.stories = stories
@@ -27,6 +29,7 @@ class NewsTableViewController: UITableViewController {
                     print(error)
                 }
             }
+        navigationItem.title = "NYTimes Top News"
                 
             
     }

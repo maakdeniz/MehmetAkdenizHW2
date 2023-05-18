@@ -1,4 +1,6 @@
 // MARK: - StoryResponse
+import CoreData
+
 public struct StoryResponse: Codable {
     public let status, copyright, section: String
     public let lastUpdated: String
@@ -49,7 +51,7 @@ public enum ItemType: String, Codable {
 
 // MARK: - Multimedia
 public struct Multimedia: Codable {
-    public let url: String
+    public let url: String?
     public let format: Format
     public let height, width: Int
     public let type: TypeEnum

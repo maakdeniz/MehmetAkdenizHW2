@@ -9,12 +9,18 @@ import CoreData
 import UIKit
 import NYTimesAPI
 
-class CoreDataManager {
+protocol CoreDataManagerProtocol {
+    func addFavorite(story: StoryResult)
+    func isFavorite(story: StoryResult) -> Bool
+    func deleteFavorite(story: StoryResult)
+}
+
+class CoreDataManager: CoreDataManagerProtocol {
     
     static let shared = CoreDataManager()
 
     private let persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "NYTimesTopNews") // replace with your Core Data model name
+        let container = NSPersistentContainer(name: "NYTimesTopNews")
         container.loadPersistentStores { storeDescription, error in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -23,7 +29,7 @@ class CoreDataManager {
         return container
     }()
 
-    private var context: NSManagedObjectContext {
+    public var context: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
 
@@ -68,5 +74,7 @@ class CoreDataManager {
             print("Failed to delete favorite: ", error)
         }
     }
+    
+
 }
 
