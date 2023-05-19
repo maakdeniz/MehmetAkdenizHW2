@@ -17,7 +17,9 @@ import CoreData
 
 class FavoritesViewController: UITableViewController {
 
+    //MARK: Variable Definitions
     var favoriteStories: [FavoriteStory] = []
+    //MARK: UI Elements
     let emptyLabel: UILabel = {
             let label = UILabel()
             label.text = "Henüz hiç haber kayıt etmediniz."
@@ -27,26 +29,25 @@ class FavoritesViewController: UITableViewController {
             return label
         }()
 
-
+    //MARK: LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
     }
-    
-    private func setupView() {
-        tableView.backgroundView = emptyLabel
-        loadFavoriteStories()
-        emptyLabel.isHidden = !favoriteStories.isEmpty
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadFavoriteStories()
         tableView.reloadData()
         emptyLabel.isHidden = !favoriteStories.isEmpty
     }
+    //MARK: Function Definations
+    private func setupView() {
+        tableView.backgroundView = emptyLabel
+        loadFavoriteStories()
+        emptyLabel.isHidden = !favoriteStories.isEmpty
+    }
     
-    func loadFavoriteStories() {
+    private func loadFavoriteStories() {
         let fetchRequest: NSFetchRequest<FavoriteStory> = FavoriteStory.fetchRequest()
 
         do {
@@ -82,27 +83,20 @@ class FavoritesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the story from CoreData
+           
             let story = favoriteStories[indexPath.row]
             CoreDataManager.shared.context.delete(story)
-            
-            // Save changes in CoreData
             do {
                 try CoreDataManager.shared.context.save()
             } catch {
                 print("Failed to save after deletion: \(error)")
             }
-            
-            // Delete the story from your array
             favoriteStories.remove(at: indexPath.row)
-            
-            // Delete the row from the table view
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 
 
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         _ = favoriteStories[indexPath.row]
         if let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController {

@@ -10,23 +10,20 @@ import NYTimesAPI
 
 class NewsTableViewController: UITableViewController,LoadingShowable {
 
-    private var stories = [StoryResult]()
     
+    //MARK: Variables
+    private var stories = [StoryResult]()
     private let apiManager = NYTimesService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
-                
-            
     }
     
     private func setupView() {
         self.showLoading()
         fetchStories()
         navigationItem.title = "NYTimes Top News"
-        
     }
     
     private func fetchStories(){
@@ -48,7 +45,7 @@ class NewsTableViewController: UITableViewController,LoadingShowable {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        
         return stories.count
     }
 
