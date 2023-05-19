@@ -61,7 +61,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9Ex-FO-I3N" secondAttribute="trailing" constant="16" id="1gy-IB-9G4"/>
                             <constraint firstItem="itE-ic-hAC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="64C-UH-006"/>
@@ -91,7 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2098" y="1422"/>
+            <point key="canvasLocation" x="2353" y="-437"/>
         </scene>
         <!--NYTimes Top News-->
         <scene sceneID="8Zy-an-hMR">
@@ -100,13 +100,14 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="7hy-nK-Kt5">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="sectionIndexBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryCell" rowHeight="110" id="ff7-G2-tOb" customClass="NewsTableViewCell" customModule="NYTimesTopNews" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="393" height="110"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryCell" rowHeight="120" id="ff7-G2-tOb" customClass="NewsTableViewCell" customModule="NYTimesTopNews" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="393" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ff7-G2-tOb" id="kZV-0x-1rG">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="110"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G24-ee-W0S">
@@ -128,6 +129,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="G24-ee-W0S" firstAttribute="top" secondItem="kZV-0x-1rG" secondAttribute="topMargin" constant="4" id="4M9-qT-t7t"/>
                                         <constraint firstItem="egw-4q-A2D" firstAttribute="top" secondItem="2Us-gx-cZc" secondAttribute="bottom" constant="16" id="FSM-ve-ns1"/>
@@ -136,10 +138,17 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="2Us-gx-cZc" secondAttribute="trailing" constant="4" id="QRj-AV-uiI"/>
                                         <constraint firstItem="2Us-gx-cZc" firstAttribute="top" secondItem="kZV-0x-1rG" secondAttribute="topMargin" constant="4" id="RRF-9Y-cjm"/>
                                         <constraint firstItem="G24-ee-W0S" firstAttribute="leading" secondItem="kZV-0x-1rG" secondAttribute="leadingMargin" constant="4" id="Vo2-jM-Len"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="G24-ee-W0S" secondAttribute="bottom" constant="4" id="bdv-YU-Uns"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="G24-ee-W0S" secondAttribute="bottom" constant="14" id="bdv-YU-Uns"/>
                                         <constraint firstItem="2Us-gx-cZc" firstAttribute="leading" secondItem="G24-ee-W0S" secondAttribute="trailing" constant="8" id="m1o-Om-6dQ"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="45"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="storyAbstractLabel" destination="egw-4q-A2D" id="3fP-VM-wHi"/>
                                     <outlet property="storyImageView" destination="G24-ee-W0S" id="aWa-bP-K3R"/>
@@ -152,21 +161,23 @@
                             <outlet property="delegate" destination="4jQ-kj-GZd" id="aaW-Sk-R55"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="News" image="newspaper" catalog="system" id="L7n-cd-ijR"/>
+                    <tabBarItem key="tabBarItem" title="Haberler" image="newspaper" catalog="system" id="gmE-rN-edS"/>
                     <navigationItem key="navigationItem" title="NYTimes Top News" id="UWO-1h-QIE"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aaj-iD-0mH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2590" y="732"/>
+            <point key="canvasLocation" x="1563" y="-732"/>
         </scene>
-        <!--Favorites-->
+        <!--Favorite News-->
         <scene sceneID="WZw-c9-REq">
             <objects>
                 <tableViewController id="Prn-zQ-dhA" customClass="FavoritesViewController" customModule="NYTimesTopNews" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="dKi-sA-o4V">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="separatorColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsCell" rowHeight="110" id="f7f-ZP-YnE" customClass="NewsTableViewCell" customModule="NYTimesTopNews" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="110"/>
@@ -206,6 +217,12 @@
                                         <constraint firstItem="bga-FM-pzm" firstAttribute="top" secondItem="d9B-uj-DRv" secondAttribute="topMargin" constant="4" id="rlL-Tm-WkT"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="storyAbstractLabel" destination="1AC-qc-KTl" id="vuE-eb-S8a"/>
                                     <outlet property="storyImageView" destination="bga-FM-pzm" id="pIk-fu-ull"/>
@@ -218,11 +235,12 @@
                             <outlet property="delegate" destination="Prn-zQ-dhA" id="gvo-Oj-464"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Favorites" image="heart" catalog="system" id="AOM-K3-Yvi"/>
+                    <tabBarItem key="tabBarItem" title="Favoriler" image="heart" catalog="system" id="HDa-fP-lH4"/>
+                    <navigationItem key="navigationItem" title="Favorite News" id="sqI-Sf-wfv"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GCw-C9-Z79" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1553" y="732"/>
+            <point key="canvasLocation" x="1563" y="-43"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Lkf-GJ-dGp">
@@ -240,7 +258,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qzW-gn-x4a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1092" y="-8"/>
+            <point key="canvasLocation" x="-363" y="-437"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="XpC-Nt-UT1">
@@ -249,17 +267,18 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="YD6-sP-gSi"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7bo-sL-Ssj">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="4jQ-kj-GZd" kind="relationship" relationship="viewControllers" id="lJu-zJ-zUp"/>
-                        <segue destination="Prn-zQ-dhA" kind="relationship" relationship="viewControllers" id="DIQ-D9-h7t"/>
+                        <segue destination="4jQ-kj-GZd" kind="relationship" relationship="viewControllers" id="s0U-Z0-mFU"/>
+                        <segue destination="Prn-zQ-dhA" kind="relationship" relationship="viewControllers" id="0RO-Ic-XcO"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qSE-OY-pUB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2098.4732824427479" y="-8.4507042253521139"/>
+            <point key="canvasLocation" x="489" y="-437"/>
         </scene>
     </scenes>
     <resources>
@@ -273,6 +292,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

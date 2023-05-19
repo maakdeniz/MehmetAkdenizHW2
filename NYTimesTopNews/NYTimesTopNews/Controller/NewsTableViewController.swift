@@ -11,28 +11,39 @@ import NYTimesAPI
 class NewsTableViewController: UITableViewController,LoadingShowable {
 
     private var stories = [StoryResult]()
+    
     private let apiManager = NYTimesService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.showLoading()
-        apiManager.fetchTopStories { [weak self] result in
-            self?.hideLoading()
-            switch result {
-                case .success(let stories):
-                    DispatchQueue.main.async {
-                        self?.stories = stories
-                        self?.tableView.reloadData()
-                    }
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        navigationItem.title = "NYTimes Top News"
+        setupView()
                 
             
     }
+    
+    private func setupView() {
+        self.showLoading()
+        fetchStories()
+        navigationItem.title = "NYTimes Top News"
+        
+    }
+    
+    private func fetchStories(){
+        apiManager.fetchTopStories { [weak self] result in
+            self?.hideLoading()
+            switch result {
+            case .success(let stories):
+                DispatchQueue.main.async {
+                    self?.stories = stories
+                    self?.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
 
     // MARK: - Table view data source
 

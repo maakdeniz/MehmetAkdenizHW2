@@ -30,7 +30,13 @@ class FavoritesViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+    }
+    
+    private func setupView() {
         tableView.backgroundView = emptyLabel
+        loadFavoriteStories()
+        emptyLabel.isHidden = !favoriteStories.isEmpty
     }
     
     override func viewWillAppear(_ animated: Bool) {

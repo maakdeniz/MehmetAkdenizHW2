@@ -24,56 +24,71 @@ class DetailViewController: UIViewController,LoadingShowable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.showLoading()
-        if let story = story {
-            titleLabel.text = story.title
-            descriptionLabel.text = story.abstract
-            authorLabel.text = story.byline
-            if let imageUrl = story.multimedia[0].url,let url = URL(string: imageUrl){
-                storyImageView.kf.setImage(with: url) { result in
-                    switch result {
-                        
-                    case .success(_):
-                        self.hideLoading()
-                    case .failure(_):
-                        self.hideLoading()
-                    }
-                }
-            }
-        } else if let favoriteStory = favoriteStory {
-            titleLabel.text = favoriteStory.title
-            descriptionLabel.text = favoriteStory.abstract
-            authorLabel.text = favoriteStory.byline
-            if let imageUrl = favoriteStory.imageUrl, let url = URL(string: imageUrl) {
-                storyImageView.kf.setImage(with: url) { result in
-                    switch result {
-                        
-                    case .success(_):
-                        self.hideLoading()
-                    case .failure(_):
-                        self.hideLoading()
-                    }
-                }
-            }
-        }
-
-        navigationItem.title = "NYTimes Top News"
-
-        favoriteButton = UIBarButtonItem(image: UIImage(systemName: "heart"),
-                                         style: .plain,
-                                         target: self,action: #selector(addToFavorites))
-        self.navigationItem.rightBarButtonItem = favoriteButton
-        updateFavoriteButton()
-        updateFavoriteButtonVisibility()
+        setupView()
     }
     
-    func updateFavoriteButtonVisibility() {
+    private func setupView(){
+        self.showLoading()
+        if let story = story {
+            configureView(with: story)
+        } else if let favoriteStory = favoriteStory {
+            configureView(with: favoriteStory)
+        }
+        
+        navigationItem.title = "NYTimes Top News"
+        setupFavoriteButton()
+        updateFavoriteButtonVisibility()
+        
+    }
+    
+    private func setupFavoriteButton() {
+        favoriteButton = UIBarButtonItem(image: UIImage(systemName: "heart"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(addToFavorites))
+        self.navigationItem.rightBarButtonItem = favoriteButton
+        updateFavoriteButton()
+    }
+    
+    private func configureView(with story: StoryResult) {
+        titleLabel.text = story.title
+        descriptionLabel.text = story.abstract
+        authorLabel.text = story.byline
+        if let imageUrl = story.multimedia[0].url, let url = URL(string: imageUrl) {
+            loadImage(with: url)
+        }
+    }
+
+    private func configureView(with favoriteStory: FavoriteStory) {
+        titleLabel.text = favoriteStory.title
+        descriptionLabel.text = favoriteStory.abstract
+        authorLabel.text = favoriteStory.byline
+        if let imageUrl = favoriteStory.imageUrl, let url = URL(string: imageUrl) {
+            loadImage(with: url)
+        }
+    }
+    
+    private func loadImage(with url: URL) {
+        storyImageView.kf.setImage(with: url) { [weak self] result in
+            self?.hideLoading()
+        }
+    }
+    
+    
+    private func updateFavoriteButtonVisibility() {
         if isComingFromFavorites {
             navigationItem.rightBarButtonItem = nil
         }
     }
 
+    private func updateFavoriteButton() {
+        guard let story = story else { return }
+        if CoreDataManager.shared.isFavorite(story: story) {
+            favoriteButton.image = UIImage(systemName: "heart.fill") // Or any image you want when favorited
+        } else {
+            favoriteButton.image = UIImage(systemName: "heart") // Or any image you want when not favorited
+        }
+      }
     
     @IBAction func seeMoreButtonTapped(_ sender: Any) {
         if let urlString = story?.url ?? self.favoriteStory?.url,let url = URL(string: urlString) {
@@ -108,13 +123,4 @@ class DetailViewController: UIViewController,LoadingShowable {
         present(alert, animated: true)
     }
 
-    
-    func updateFavoriteButton() {
-        guard let story = story else { return }
-        if CoreDataManager.shared.isFavorite(story: story) {
-            favoriteButton.image = UIImage(systemName: "heart.fill") // Or any image you want when favorited
-        } else {
-            favoriteButton.image = UIImage(systemName: "heart") // Or any image you want when not favorited
-        }
-      }
 }
